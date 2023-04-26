@@ -4,6 +4,7 @@ PPM_VERSION="2022.11.4-20"
 R_VERSION="4.3.0"
 
 # Change the below variable assignments to your setup
+PPM_LICENSE_KEY="xyz"
 PPM_URL="https://ppm.ukhsa.com"
 SSL_CERT="/path/to/ssl.cert"
 SSL_KEY="/path/to/ssl.key"
@@ -130,6 +131,11 @@ UsageDataURL = "postgres://${DB_USER}@${DB_HOST}/rstudio_pm_usage"
 EOF
 
 systemctl restart rspm
+
+#Activating License
+/opt/rstudio-pm/bin/license-manager activate $PPM_LICENSE_KEY
+systemctl restart rspm 
+
 systemctl status rspm
 
 # https://docs.posit.co/rspm/admin/getting-started/configuration/#quickstart-cran
